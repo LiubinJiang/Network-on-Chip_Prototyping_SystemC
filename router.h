@@ -2,19 +2,39 @@
 #define ROUTER_H
 
 #include "systemc.h"
+//#include <string>
 #include <list>
 
 // a empty packet has src_x == src_y == dest_x == dest_y == -1
-typedef int token_type;
+//typedef int token_type;
+typedef double token_real;
+typedef double token_imagin;
+/*struct token_type {
+	double rl;
+	double im;
+	std::string name;
+	token_type(std::string newName, double newRl, double newIm)
+	{ 
+		name = newName;
+		rl = newRl;
+		im = newIm;
+	}
+	token_type(){};
+	bool operator==(const token_type &x) const
+	{
+		return (x.name == name) && (x.rl == rl) && (x.im == im);
+	}
+};*/
 struct packet
 {
 	int src_x, src_y;
 	int dest_x, dest_y;
-	token_type token;
-
+	//token_type token;
+	token_real rl;
+	token_imagin im;
 	packet(int sx = -1, int sy = -1, int dx = -1, int dy = -1,
-		token_type t = token_type())
-		: src_x(sx), src_y(sy), dest_x(dx), dest_y(dy), token(t)
+		/*token_type t = token_type()*/ token_real r = token_real(), token_imagin i = token_imagin())
+		: src_x(sx), src_y(sy), dest_x(dx), dest_y(dy), /*token(t)*/rl(r), im(i)
 	{
 	}
 
@@ -22,7 +42,7 @@ struct packet
 	{
 		return (x.src_x == src_x) && (x.src_y == src_y)
 			&& (x.dest_x == dest_x) && (x.dest_y == dest_y)
-			&& (x.token == token);
+			/*&& (x.token == token)*/ && (x.rl == rl) &&(x.im == im);
 	}
 }; // struct packet
 

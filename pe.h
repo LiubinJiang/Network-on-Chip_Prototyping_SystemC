@@ -43,8 +43,9 @@ protected:
 // for PI and PO
 class PE_IO : public PE_base
 {
+	//int count;
 public:
-	PE_IO(const char *name) : PE_base(name) {}
+	PE_IO(const char *name/*, std::string result, int count*/) : PE_base(name) {}
 
 protected:
 	void execute();
@@ -56,6 +57,11 @@ protected:
 // for P1
 class PE_inc : public PE_base
 {
+	bool alreadyHaveNumberInPe;
+	double lastNumberRl;
+	double lastNumberIm;
+	int source_x;
+	int source_y;
 public:
 	PE_inc(const char *name) : PE_base(name) {}
 
@@ -63,6 +69,25 @@ protected:
 	void execute();
 
 	void fire();
+
+	double addRL(double rl1, double rl2);
+	double addIm(double im1, double im2);
+	double add_w_Rl(double rl1, double rl2, double im2);
+	double add_w_Im(double im1, double rl2, double im2);
+	double add_w2_Rl(double rl1, double rl2, double im2);
+	double add_w2_Im(double im1, double rl2, double im2);
+	double add_w3_Rl(double rl1, double rl2, double im2);
+	double add_w3_Im(double im1, double rl2, double im2);
+	double minusRL(double rl1, double rl2);
+	double minusIm(double im1, double im2);
+	double minus_w_Rl(double rl1, double rl2, double im2);
+	double minus_w_Im(double im1, double rl2, double im2);
+	double minus_w2_Rl(double rl1, double rl2, double im2);
+	double minus_w2_Im(double im1, double rl2, double im2);
+	double minus_w3_Rl(double rl1, double rl2, double im2);
+	double minus_w3_Im(double im1, double rl2, double im2);
+
+
 };
 
 #endif // PE_H
